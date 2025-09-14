@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Picture of the Day</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <img id="daily-pic" src="" alt="Picture of the Day">
+  <script>
+    // Sample: Replace with your own image URLs
+    const images = [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+      "https://images.unsplash.com/photo-1465101162946-4377e57745c3",
+      "https://images.unsplash.com/photo-1519985176271-adb1088fa94c",
+      // ... add up to 365 images
+    ];
+
+    function getDayOfYear() {
+      const today = new Date();
+      const start = new Date(today.getFullYear(), 0, 0);
+      const diff = today - start;
+      const oneDay = 1000 * 60 * 60 * 24;
+      return Math.floor(diff / oneDay);
+    }
+
+    const day = getDayOfYear();
+    const imgIndex = day % images.length; // For leap years fallback
+    document.getElementById('daily-pic').src = images[imgIndex];
+  </script>
+</body>
+</html>
